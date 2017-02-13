@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,6 +51,8 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         viewHolder.category.setText(mContext.getString(R.string.category_string) + Constants.PRODUCT_CATEGORY.values()[product.getCategory()].name());
         viewHolder.price.setText(mContext.getString(R.string.rupee)+product.getPrice());
         viewHolder.itemView.setTag(product.getId());
+        viewHolder.delete.setOnClickListener(mItemClickListener);
+        viewHolder.delete.setTag(product);
     }
 
     @Override
@@ -62,6 +65,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public TextView name;
         public TextView price;
         public TextView category;
+        public Button delete;
 
         public CartListViewHolder(View itemView) {
             super(itemView);
@@ -69,6 +73,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             name = (TextView) itemView.findViewById(R.id.name);
             price = (TextView) itemView.findViewById(R.id.price);
             category = (TextView) itemView.findViewById(R.id.category);
+            delete = (Button) itemView.findViewById(R.id.delete);
         }
     }
 }

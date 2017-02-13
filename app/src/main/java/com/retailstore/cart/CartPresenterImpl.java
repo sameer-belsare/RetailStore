@@ -13,6 +13,7 @@ import io.realm.RealmResults;
 public class CartPresenterImpl implements CartPresenter {
     private CartView cartView;
     private RealmResults<Product> cartProducts;
+    private Realm realm;
 
     public CartPresenterImpl(CartView cartView) {
         this.cartView = cartView;
@@ -20,7 +21,7 @@ public class CartPresenterImpl implements CartPresenter {
 
     @Override
     public void getItemsInCart() {
-        Realm realm = ApplicationController.getInstance().getRealmInstance();
+        realm = ApplicationController.getInstance().getRealmInstance();
         cartProducts = realm.where(Product.class).equalTo("addedToCart", true).findAll();
         cartView.loadCartData(cartProducts);
     }
@@ -30,7 +31,7 @@ public class CartPresenterImpl implements CartPresenter {
         int totalPrice = 0;
         if(cartProducts != null && cartProducts.size() > 0) {
             for (Product product : cartProducts) {
-                totalPrice += totalPrice + product.getPrice();
+                totalPrice += product.getPrice();
             }
         }
         cartView.setTotalAmount(totalPrice);
@@ -46,5 +47,15 @@ public class CartPresenterImpl implements CartPresenter {
     @Override
     public void onDestroy() {
         cartView = null;
+    }
+
+    @Override
+    public void deleteProductFromCart(Product product) {
+        realm.beginTransaction();
+        product.setAddedToCart(false);
+        realm.copyToRealmOrUpdate(product);
+        realm.commitTransaction();
+        cartProducts = realm.where(Product.class).equalTo("addedToCart", true).findAll();
+        cartView.productDeletedSuccess();
     }
 }

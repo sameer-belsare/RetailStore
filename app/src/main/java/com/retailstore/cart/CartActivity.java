@@ -2,10 +2,12 @@ package com.retailstore.cart;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.retailstore.Product;
@@ -21,6 +23,7 @@ public class CartActivity extends AppCompatActivity implements CartView, View.On
     private CartPresenter cartPresenter;
     private TextView noProductsInCartText;
     private RecyclerView listView;
+    private CartAdapter cartAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,7 @@ public class CartActivity extends AppCompatActivity implements CartView, View.On
     public void loadCartData(List<Product> cartProducts) {
         if(cartProducts != null && cartProducts.size() > 0) {
             noProductsInCartText.setVisibility(View.GONE);
-            CartAdapter cartAdapter = new CartAdapter(cartProducts, this, this);
+            cartAdapter = new CartAdapter(cartProducts, this, this);
             listView.setAdapter(cartAdapter);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             listView.setLayoutManager(linearLayoutManager);
@@ -65,10 +68,21 @@ public class CartActivity extends AppCompatActivity implements CartView, View.On
     }
 
     @Override
+    public void productDeletedSuccess() {
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.rlMain), getString(R.string.deleted_from_cart), Snackbar.LENGTH_SHORT);
+        snackbar.show();
+        cartAdapter.notifyDataSetChanged();
+        cartPresenter.getTotalAmount();
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.ll_main:
                 cartPresenter.onItemClicked((int)view.getTag());
+                break;
+            case R.id.delete:
+                cartPresenter.deleteProductFromCart((Product)view.getTag());
                 break;
         }
     }

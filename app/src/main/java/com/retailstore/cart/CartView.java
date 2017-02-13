@@ -14,4 +14,6 @@ public interface CartView {
     void showProductDetails(int id);
 
     void setTotalAmount(int amount);
+
+    void productDeletedSuccess();
 }

@@ -1,5 +1,7 @@
 package com.retailstore.cart;
 
+import com.retailstore.Product;
+
 /**
  * Created by sameer.belsare on 13/2/17.
  */
@@ -12,4 +14,6 @@ public interface CartPresenter {
     void onItemClicked(int id);
 
     void onDestroy();
+
+    void deleteProductFromCart(Product product);
 }
