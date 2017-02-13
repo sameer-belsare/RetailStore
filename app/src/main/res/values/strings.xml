@@ -18,7 +18,7 @@
     <string name="free">Free</string>
     <string name="dash_slash">/-</string>
     <string name="already_added_in_cart">Already added in Cart</string>
-    <string name="deleted_from_cart">Product delete from cart</string>
+    <string name="deleted_from_cart">Item deleted successfully</string>
     <string-array name="spinner_array">
         <item>"ALL PRODUCTS"</item>
         <item>"ELECTRONICS"</item>
