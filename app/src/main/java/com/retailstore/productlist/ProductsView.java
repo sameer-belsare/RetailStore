@@ -1,5 +1,7 @@
 package com.retailstore.productlist;
 
+import com.retailstore.Product;
+
 import java.util.List;
 
 /**

@@ -1,16 +1,22 @@
 package com.retailstore.productlist;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.retailstore.Constants;
+import com.retailstore.Product;
 import com.retailstore.R;
+import com.retailstore.cart.CartActivity;
+import com.retailstore.productdetails.ProductDetailsActivity;
 
 import java.util.List;
 
@@ -31,7 +37,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
         listView = (RecyclerView) findViewById(R.id.list);
         progressBar = (ProgressBar) findViewById(R.id.progress);
         noProductsText = (TextView) findViewById(R.id.noProductsText);
-        productPresenter = new ProductPResenterImpl(this);
+        productPresenter = new ProductPresenterImpl(this);
         productPresenter.loadAllProductsInDB();
         productPresenter.getProducts(Constants.PRODUCT_CATEGORY.ALL.ordinal());
     }
@@ -77,11 +83,32 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
 
     @Override
     public void showProductDetails(int id) {
+        Intent intent = new Intent(this, ProductDetailsActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_settings) {
+            Intent intent = new Intent(this, CartActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()){
+            case R.id.ll_main:
+                productPresenter.onItemClicked((int)view.getTag());
+                break;
+        }
     }
 }

@@ -11,6 +11,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/list_item_height</item>
     </style>
+    <style name="cart_card_view_style" parent="card_view_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/cart_item_height</item>
+    </style>
 
     <style name="card_view_style" parent="CardView">
         <item name="cardBackgroundColor">@android:color/white</item>

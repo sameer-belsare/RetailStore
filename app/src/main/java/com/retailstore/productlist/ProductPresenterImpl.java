@@ -4,6 +4,7 @@ import android.content.res.Resources;
 
 import com.retailstore.ApplicationController;
 import com.retailstore.Constants;
+import com.retailstore.Product;
 import com.retailstore.R;
 import com.retailstore.RetailsApplication;
 
@@ -13,11 +14,11 @@ import io.realm.RealmResults;
 /**
  * Created by sameer.belsare on 13/2/17.
  */
-public class ProductPResenterImpl implements ProductPresenter {
+public class ProductPresenterImpl implements ProductPresenter {
     private ProductsView productsView;
     private Realm realm;
 
-    public ProductPResenterImpl(ProductsView productsView) {
+    public ProductPresenterImpl(ProductsView productsView) {
         this.productsView = productsView;
     }
 
@@ -31,10 +32,11 @@ public class ProductPResenterImpl implements ProductPresenter {
         String[] productNames = resources.getStringArray(R.array.product_name);
         for (int count=0; count<productNames.length; count++){
             Product product = new Product(count+1, productNames[count],
-                                        (resources.getIntArray(R.array.product_price))[count],
-                                        (resources.getStringArray(R.array.product_details))[count],
-                                        "",
-                                        (resources.getIntArray(R.array.product_category))[count]);
+                    (resources.getIntArray(R.array.product_price))[count],
+                    (resources.getStringArray(R.array.product_details))[count],
+                    "",
+                    (resources.getIntArray(R.array.product_category))[count],
+                    false);
             realm.beginTransaction();
             realm.copyToRealmOrUpdate(product);
             realm.commitTransaction();
@@ -66,5 +68,6 @@ public class ProductPResenterImpl implements ProductPresenter {
     @Override
     public void onDestroy() {
         productsView = null;
+        ApplicationController.getInstance().closeRealmInstance();
     }
 }

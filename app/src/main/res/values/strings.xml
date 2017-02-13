@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name">Retail Store</string>
     <string name="no_products">No Products</string>
+    <string name="product_details">Product Details</string>
+    <string name="category_string">"Category: "</string>
+    <string name="rupee">"₹ "</string>
+    <string name="price">"Price: "</string>
+    <string name="description">Description:\n</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="added_to_cart">Added to Cart</string>
+    <string name="cart">Cart</string>
+    <string name="no_products_cart">No Product in Cart</string>
+    <string name="price_details">Price Details</string>
+    <string name="amount_payable">Total Amount Payable</string>
+    <string name="delivery">delivery</string>
+    <string name="free">Free</string>
+    <string name="dash_slash">/-</string>
     <string-array name="product_name">
         <item>"Microwave oven"</item>
         <item>"Television"</item>

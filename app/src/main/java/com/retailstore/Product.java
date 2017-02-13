@@ -1,4 +1,4 @@
-package com.retailstore.productlist;
+package com.retailstore;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -14,18 +14,20 @@ public class Product extends RealmObject {
     private String details;
     private String image;
     private int category;
+    private boolean addedToCart;
 
     public Product(){
 
     }
 
-    public Product(int id, String name, int price, String details, String image, int category) {
+    public Product(int id, String name, int price, String details, String image, int category, boolean addedToCart) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.details = details;
         this.image = image;
         this.category = category;
+        this.addedToCart = addedToCart;
     }
 
     public int getId() {
@@ -50,5 +52,13 @@ public class Product extends RealmObject {
 
     public int getCategory() {
         return category;
+    }
+
+    public void setAddedToCart(boolean addedToCart) {
+        this.addedToCart = addedToCart;
+    }
+
+    public boolean isAddedToCart() {
+        return addedToCart;
     }
 }
