@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">Retail Store</string>
+    <string name="no_products">No Products</string>
+    <string-array name="product_name">
+        <item>"Microwave oven"</item>
+        <item>"Television"</item>
+        <item>"Vacuum Cleaner"</item>
+        <item>"Iron"</item>
+        <item>"Table"</item>
+        <item>"Chair"</item>
+        <item>"Almirah"</item>
+        <item>"Double Bed"</item>
+        <item>"Bean Bag"</item>
+    </string-array>
+    <integer-array name="product_price">
+        <item>10000</item>
+        <item>35000</item>
+        <item>8000</item>
+        <item>2000</item>
+        <item>5000</item>
+        <item>1500</item>
+        <item>3500</item>
+        <item>12000</item>
+        <item>700</item>
+    </integer-array>
+    <string-array name="product_details">
+        <item>"Microwave oven"</item>
+        <item>"Television"</item>
+        <item>"Vacuum Cleaner"</item>
+        <item>"Iron"</item>
+        <item>"Table"</item>
+        <item>"Chair"</item>
+        <item>"Almirah"</item>
+        <item>"Double Bed"</item>
+        <item>"Bean Bag"</item>
+    </string-array>
+    <integer-array name="product_category">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+    </integer-array>
 </resources>
