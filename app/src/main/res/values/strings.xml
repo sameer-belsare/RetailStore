@@ -68,4 +68,15 @@
         <item>2</item>
         <item>2</item>
     </integer-array>
+    <string-array name="image_names">
+        <item>"microwave"</item>
+        <item>"tv"</item>
+        <item>"vaccum"</item>
+        <item>"iron"</item>
+        <item>"table"</item>
+        <item>"chair"</item>
+        <item>"almirah"</item>
+        <item>"bed"</item>
+        <item>"beanbag"</item>
+    </string-array>
 </resources>

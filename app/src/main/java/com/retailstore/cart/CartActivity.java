@@ -62,7 +62,8 @@ public class CartActivity extends AppCompatActivity implements CartView, View.On
     }
 
     @Override
-    public void setTotalAmount(int amount) {
+    public void setTotalAmount(int totalItems, int amount) {
+        ((TextView) findViewById(R.id.priceText)).setText("Price ("+totalItems+" item/s)");
         ((TextView) findViewById(R.id.totalPrice)).setText(getString(R.string.rupee)+amount);
         ((TextView) findViewById(R.id.totalAmount)).setText(getString(R.string.rupee)+amount+getString(R.string.dash_slash));
     }

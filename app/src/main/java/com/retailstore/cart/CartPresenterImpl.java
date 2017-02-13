@@ -34,7 +34,7 @@ public class CartPresenterImpl implements CartPresenter {
                 totalPrice += product.getPrice();
             }
         }
-        cartView.setTotalAmount(totalPrice);
+        cartView.setTotalAmount(cartProducts.size(), totalPrice);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class ProductPresenterImpl implements ProductPresenter {
                 Product product = new Product(count + 1, productNames[count],
                         (resources.getIntArray(R.array.product_price))[count],
                         (resources.getStringArray(R.array.product_details))[count],
-                        "",
+                        (resources.getStringArray(R.array.image_names))[count],
                         (resources.getIntArray(R.array.product_category))[count],
                         false);
                 realm.beginTransaction();

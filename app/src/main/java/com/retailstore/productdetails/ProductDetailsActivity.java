@@ -47,7 +47,8 @@ public class ProductDetailsActivity extends AppCompatActivity implements Product
     public void showProductDetails(Product product) {
         this.product = product;
         ImageView imageView = (ImageView) findViewById(R.id.ivImage);
-        Glide.with(this).load(Uri.parse(product.getImage())).asBitmap().placeholder(R.mipmap.ic_launcher).into(imageView);
+        int resID = getResources().getIdentifier(product.getImage(), "drawable",  getPackageName());
+        Glide.with(this).load(resID).placeholder(R.mipmap.ic_launcher).into(imageView);
         ((TextView) findViewById(R.id.name)).setText(product.getName());
         ((TextView) findViewById(R.id.category)).setText(getString(R.string.category_string) + Constants.PRODUCT_CATEGORY.values()[product.getCategory()].name());
         ((TextView) findViewById(R.id.price)).setText(getString(R.string.price)+getString(R.string.rupee)+product.getPrice());

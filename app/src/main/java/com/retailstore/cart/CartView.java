@@ -13,7 +13,7 @@ public interface CartView {
 
     void showProductDetails(int id);
 
-    void setTotalAmount(int amount);
+    void setTotalAmount(int totalItems, int amount);
 
     void productDeletedSuccess();
 }

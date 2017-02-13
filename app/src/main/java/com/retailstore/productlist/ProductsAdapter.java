@@ -43,8 +43,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ProductsListViewHolder viewHolder = (ProductsListViewHolder) holder;
         Product product = products.get(position);
-        String imgPath = product.getImage();
-        Glide.with(mContext).load(Uri.parse(imgPath)).asBitmap().placeholder(R.mipmap.ic_launcher).into(viewHolder.image);
+        int resID = mContext.getResources().getIdentifier(product.getImage(), "drawable",  mContext.getPackageName());
+        Glide.with(mContext).load(resID).placeholder(R.mipmap.ic_launcher).into(viewHolder.image);
         viewHolder.name.setText(product.getName());
         viewHolder.category.setText(mContext.getString(R.string.category_string) + Constants.PRODUCT_CATEGORY.values()[product.getCategory()].name());
         viewHolder.price.setText(mContext.getString(R.string.rupee)+product.getPrice());
