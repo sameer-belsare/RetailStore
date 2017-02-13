@@ -9,7 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.retailstore.Constants;
@@ -23,7 +26,7 @@ import java.util.List;
 /**
  * Created by sameer.belsare on 13/2/17.
  */
-public class ProductListActivity extends AppCompatActivity implements ProductsView, View.OnClickListener{
+public class ProductListActivity extends AppCompatActivity implements ProductsView, View.OnClickListener, AdapterView.OnItemSelectedListener {
     private RecyclerView listView;
     private ProgressBar progressBar;
     private ProductPresenter productPresenter;
@@ -37,6 +40,12 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
         listView = (RecyclerView) findViewById(R.id.list);
         progressBar = (ProgressBar) findViewById(R.id.progress);
         noProductsText = (TextView) findViewById(R.id.noProductsText);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
         productPresenter = new ProductPresenterImpl(this);
         productPresenter.loadAllProductsInDB();
         productPresenter.getProducts(Constants.PRODUCT_CATEGORY.ALL.ordinal());
@@ -110,5 +119,15 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
                 productPresenter.onItemClicked((int)view.getTag());
                 break;
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+        productPresenter.getProducts(Constants.PRODUCT_CATEGORY.values()[pos].ordinal());
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        productPresenter.getProducts(Constants.PRODUCT_CATEGORY.ALL.ordinal());
     }
 }

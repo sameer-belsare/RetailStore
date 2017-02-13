@@ -8,5 +8,7 @@ import com.retailstore.Product;
 public interface ProductDetailsView {
     void showProductDetails(Product product);
 
-    void showErrorMessage(String appErrorMessage);
+    void showMessage(String appErrorMessage);
+
+    void addedToCart(boolean success);
 }

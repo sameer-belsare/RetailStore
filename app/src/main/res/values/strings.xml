@@ -14,9 +14,15 @@
     <string name="no_products_cart">No Product in Cart</string>
     <string name="price_details">Price Details</string>
     <string name="amount_payable">Total Amount Payable</string>
-    <string name="delivery">delivery</string>
+    <string name="delivery">Delivery</string>
     <string name="free">Free</string>
     <string name="dash_slash">/-</string>
+    <string name="already_added_in_cart">Already added in Cart</string>
+    <string-array name="spinner_array">
+        <item>"ALL PRODUCTS"</item>
+        <item>"ELECTRONICS"</item>
+        <item>"FURNITURE"</item>
+        </string-array>>
     <string-array name="product_name">
         <item>"Microwave oven"</item>
         <item>"Television"</item>

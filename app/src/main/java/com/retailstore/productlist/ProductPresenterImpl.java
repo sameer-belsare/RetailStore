@@ -28,18 +28,21 @@ public class ProductPresenterImpl implements ProductPresenter {
             productsView.showProgress();
         }
         realm = ApplicationController.getInstance().getRealmInstance();
-        Resources resources = RetailsApplication.getAppContext().getResources();
-        String[] productNames = resources.getStringArray(R.array.product_name);
-        for (int count=0; count<productNames.length; count++){
-            Product product = new Product(count+1, productNames[count],
-                    (resources.getIntArray(R.array.product_price))[count],
-                    (resources.getStringArray(R.array.product_details))[count],
-                    "",
-                    (resources.getIntArray(R.array.product_category))[count],
-                    false);
-            realm.beginTransaction();
-            realm.copyToRealmOrUpdate(product);
-            realm.commitTransaction();
+        RealmResults<Product> allProducts = realm.where(Product.class).findAll();
+        if(allProducts == null || allProducts.size() <= 0) {
+            Resources resources = RetailsApplication.getAppContext().getResources();
+            String[] productNames = resources.getStringArray(R.array.product_name);
+            for (int count = 0; count < productNames.length; count++) {
+                Product product = new Product(count + 1, productNames[count],
+                        (resources.getIntArray(R.array.product_price))[count],
+                        (resources.getStringArray(R.array.product_details))[count],
+                        "",
+                        (resources.getIntArray(R.array.product_category))[count],
+                        false);
+                realm.beginTransaction();
+                realm.copyToRealmOrUpdate(product);
+                realm.commitTransaction();
+            }
         }
     }
 

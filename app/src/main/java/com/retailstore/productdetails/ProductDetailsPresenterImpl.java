@@ -34,9 +34,14 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
     @Override
     public void addToCart(int id) {
         Product product = realm.where(Product.class).equalTo("id", this.id).findFirst();
-        realm.beginTransaction();
-        product.setAddedToCart(true);
-        realm.copyToRealmOrUpdate(product);
-        realm.commitTransaction();
+        if(product.isAddedToCart()){
+            productDetailsView.addedToCart(false);
+        } else {
+            realm.beginTransaction();
+            product.setAddedToCart(true);
+            realm.copyToRealmOrUpdate(product);
+            realm.commitTransaction();
+            productDetailsView.addedToCart(true);
+        }
     }
 }

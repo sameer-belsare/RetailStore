@@ -55,8 +55,19 @@ public class ProductDetailsActivity extends AppCompatActivity implements Product
     }
 
     @Override
-    public void showErrorMessage(String appErrorMessage) {
+    public void showMessage(String message) {
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.llDetailsMain), message, Snackbar.LENGTH_SHORT);
+        snackbar.show();
+    }
 
+    @Override
+    public void addedToCart(boolean success) {
+        String message = getString(R.string.added_to_cart);
+        if(!success) {
+            message = getString(R.string.already_added_in_cart);
+        }
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.llDetailsMain), message, Snackbar.LENGTH_SHORT);
+        snackbar.show();
     }
 
     @Override
@@ -79,8 +90,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements Product
         switch (view.getId()){
             case R.id.btnCart:
                 productDetailsPresenter.addToCart(product.getId());
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.llDetailsMain), getString(R.string.added_to_cart), Snackbar.LENGTH_SHORT);
-                snackbar.show();
                 break;
         }
     }
