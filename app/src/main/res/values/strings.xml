@@ -4,7 +4,7 @@
     <string name="product_details">Product Details</string>
     <string name="category_string">"Category: "</string>
     <string name="rupee">"₹ "</string>
-    <string name="price">"Price: "</string>
+    <string name="price">"Price: ₹ "</string>
     <string name="price_string">Price</string>
     <string name="description">Description:\n</string>
     <string name="add_to_cart">Add to Cart</string>
@@ -69,14 +69,14 @@
         <item>2</item>
     </integer-array>
     <string-array name="image_names">
-        <item>"microwave"</item>
-        <item>"tv"</item>
-        <item>"vaccum"</item>
-        <item>"iron"</item>
-        <item>"table"</item>
-        <item>"chair"</item>
-        <item>"almirah"</item>
-        <item>"bed"</item>
-        <item>"beanbag"</item>
+        <item>"@drawable/microwave"</item>
+        <item>"@drawable/tv"</item>
+        <item>"@drawable/vaccum"</item>
+        <item>"@drawable/iron"</item>
+        <item>"@drawable/table"</item>
+        <item>"@drawable/chair"</item>
+        <item>"@drawable/almirah"</item>
+        <item>"@drawable/bed"</item>
+        <item>"@drawable/beanbag"</item>
     </string-array>
 </resources>
