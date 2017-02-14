@@ -1,19 +1,16 @@
 package com.retailstore.cart;
 
 import android.content.Context;
-import android.net.Uri;
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.retailstore.Constants;
 import com.retailstore.Product;
 import com.retailstore.R;
+import com.retailstore.databinding.CartItemBinding;
 
 import java.util.List;
 
@@ -35,24 +32,22 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.cart_item, parent,
-                false);
-        view.setOnClickListener(mItemClickListener);
-        return new CartListViewHolder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        CartItemBinding cartItemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.cart_item, parent, false);
+        cartItemBinding.getRoot().setOnClickListener(mItemClickListener);
+        return new CartListViewHolder(cartItemBinding);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         CartListViewHolder viewHolder = (CartListViewHolder) holder;
         Product product = products.get(position);
+        viewHolder.bind(product);
         int resID = mContext.getResources().getIdentifier(product.getImage(), "drawable",  mContext.getPackageName());
-        Glide.with(mContext).load(resID).asBitmap().placeholder(R.mipmap.ic_launcher).into(viewHolder.image);
-        viewHolder.name.setText(product.getName());
-        viewHolder.category.setText(mContext.getString(R.string.category_string) + Constants.PRODUCT_CATEGORY.values()[product.getCategory()].name());
-        viewHolder.price.setText(mContext.getString(R.string.rupee)+product.getPrice());
+        Glide.with(mContext).load(resID).asBitmap().placeholder(R.mipmap.ic_launcher).into(viewHolder.cartItemBinding.image);
         viewHolder.itemView.setTag(product.getId());
-        viewHolder.delete.setOnClickListener(mItemClickListener);
-        viewHolder.delete.setTag(product);
+        viewHolder.cartItemBinding.delete.setOnClickListener(mItemClickListener);
+        viewHolder.cartItemBinding.delete.setTag(product);
     }
 
     @Override
@@ -61,19 +56,16 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private static class CartListViewHolder extends RecyclerView.ViewHolder {
-        public ImageView image;
-        public TextView name;
-        public TextView price;
-        public TextView category;
-        public Button delete;
+        private final CartItemBinding cartItemBinding;
 
-        public CartListViewHolder(View itemView) {
-            super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
-            name = (TextView) itemView.findViewById(R.id.name);
-            price = (TextView) itemView.findViewById(R.id.price);
-            category = (TextView) itemView.findViewById(R.id.category);
-            delete = (Button) itemView.findViewById(R.id.delete);
+        public CartListViewHolder(CartItemBinding cartItemBinding) {
+            super(cartItemBinding.getRoot());
+            this.cartItemBinding = cartItemBinding;
+        }
+
+        public void bind(Product product) {
+            cartItemBinding.setProduct(product);
+            cartItemBinding.executePendingBindings();
         }
     }
 }

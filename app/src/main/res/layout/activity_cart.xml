@@ -1,131 +1,161 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rlMain"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <data>
+
+        <variable
+            name="totalItems"
+            type="String" />
+
+        <variable
+            name="amount"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rlMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/paymentCardView"
-        tools:context=".productlist.ProductListActivity">
+        android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/cartList"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/list_background"
-            android:clipToPadding="false"
-            android:paddingBottom="@dimen/list_item_padding"
-            android:paddingLeft="@dimen/list_item_margin"
-            android:paddingRight="@dimen/list_item_margin"
-            android:paddingTop="@dimen/list_item_padding"
-            android:scrollbarStyle="outsideOverlay" />
-    </FrameLayout>
+            android:layout_above="@+id/paymentCardView"
+            tools:context=".productlist.ProductListActivity">
 
-    <TextView
-        android:id="@+id/noProductsInCartText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:text="@string/no_products_cart" />
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/paymentCardView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/cart_payment_item_height"
-        app:cardBackgroundColor="@color/colorAccent"
-        android:layout_alignParentBottom="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/list_item_margin"
-            android:layout_marginBottom="@dimen/list_item_margin"
-            android:layout_marginLeft="@dimen/cart_item_margin"
-            android:layout_marginRight="@dimen/cart_item_margin"
-            android:orientation="vertical">
-
-            <TextView
+            <ProgressBar
+                android:id="@+id/progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/price_details"
-                android:textColor="@android:color/white"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textSize="15sp" />
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
-            <RelativeLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cartList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:background="@color/list_background"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/list_item_padding"
+                android:paddingLeft="@dimen/list_item_margin"
+                android:paddingRight="@dimen/list_item_margin"
+                android:paddingTop="@dimen/list_item_padding"
+                android:scrollbarStyle="outsideOverlay" />
+        </FrameLayout>
 
-                <TextView
-                    android:id="@+id/priceText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:text="@string/price_string"
-                    android:textSize="12sp" />
-                <TextView
-                    android:id="@+id/totalPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:layout_alignParentRight="true"
-                    android:text="₹ 0"
-                    android:textSize="12sp" />
-            </RelativeLayout>
+        <TextView
+            android:id="@+id/noProductsInCartText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="@string/no_products_cart" />
 
-            <RelativeLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/paymentCardView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cart_payment_item_height"
+            android:layout_alignParentBottom="true"
+            app:cardBackgroundColor="@color/colorAccent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="@dimen/list_item_margin"
+                android:layout_marginLeft="@dimen/cart_item_margin"
+                android:layout_marginRight="@dimen/cart_item_margin"
+                android:layout_marginTop="@dimen/list_item_margin"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:text="@string/delivery"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@android:color/white"
-                    android:text="@string/free"
-                    android:textSize="12sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/amount_payable"
-                    android:textColor="@android:color/white"
+                    android:text="@string/price_details"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textSize="12sp" />
-                <TextView
-                    android:id="@+id/totalAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:textColor="@android:color/white"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:text="₹ 0"
-                    android:textSize="12sp" />
-            </RelativeLayout>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-</RelativeLayout>
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/price_string"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/priceText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text='@{totalItems}'
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/totalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text='@{amount != null ? amount : "₹ 0" }'
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/free"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/amount_payable"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/totalAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text='@{amount != null ? amount : "₹ 0" }'
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</layout>
