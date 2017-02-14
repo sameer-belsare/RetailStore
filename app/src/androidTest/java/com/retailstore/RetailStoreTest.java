@@ -34,6 +34,12 @@ public class RetailStoreTest {
 
     @Test
     public void viewProductDetailsAddProductToCartAndViewCart(){
+        //Added sleep to stay on list screen
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         for(int i=0; i<9; i+=2) {
             Context targetContext = InstrumentationRegistry.getInstrumentation()
                     .getTargetContext();
