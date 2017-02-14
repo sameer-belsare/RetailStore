@@ -22,6 +22,7 @@ import com.retailstore.productdetails.ProductDetailsActivity;
 import java.util.List;
 
 /**
+ * Activity class for product list
  * Created by sameer.belsare on 13/2/17.
  */
 public class ProductListActivity extends AppCompatActivity implements ProductsView, View.OnClickListener, AdapterView.OnItemSelectedListener {

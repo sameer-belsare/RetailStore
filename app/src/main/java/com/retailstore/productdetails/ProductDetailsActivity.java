@@ -16,9 +16,9 @@ import com.retailstore.cart.CartActivity;
 import com.retailstore.databinding.ActivityProductDetailsBinding;
 
 /**
+ * Activity class for product details
  * Created by sameer.belsare on 13/2/17.
  */
-
 public class ProductDetailsActivity extends AppCompatActivity implements ProductDetailsView, View.OnClickListener {
     private ProductDetailsPresenterImpl productDetailsPresenter;
     private Product product;

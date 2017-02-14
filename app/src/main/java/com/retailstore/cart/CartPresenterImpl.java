@@ -7,9 +7,9 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 /**
+ * Implementation of cart presenter
  * Created by sameer.belsare on 13/2/17.
  */
-
 public class CartPresenterImpl implements CartPresenter {
     private CartView cartView;
     private RealmResults<Product> cartProducts;

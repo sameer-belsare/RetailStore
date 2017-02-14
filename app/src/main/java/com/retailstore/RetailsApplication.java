@@ -26,6 +26,10 @@ public class RetailsApplication extends Application {
         Realm.setDefaultConfiguration(realmConfiguration);
     }
 
+    /**
+     * Method to get Application context
+     * @return Application Context
+     */
     public static Context getAppContext(){
         return context;
     }

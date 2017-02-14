@@ -12,6 +12,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 /**
+ * Implementation class of product list presenter
  * Created by sameer.belsare on 13/2/17.
  */
 public class ProductPresenterImpl implements ProductPresenter {

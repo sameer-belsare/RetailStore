@@ -3,9 +3,9 @@ package com.retailstore;
 import io.realm.Realm;
 
 /**
+ * Singleton class for managing application level data
  * Created by sameer.belsare on 13/2/17.
  */
-
 public class ApplicationController {
     private static ApplicationController mInstance;
     private Realm realm;

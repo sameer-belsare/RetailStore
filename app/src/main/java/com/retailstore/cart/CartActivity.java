@@ -16,6 +16,7 @@ import com.retailstore.productdetails.ProductDetailsActivity;
 import java.util.List;
 
 /**
+ * Activity class for cart list
  * Created by sameer.belsare on 13/2/17.
  */
 public class CartActivity extends AppCompatActivity implements CartView, View.OnClickListener {

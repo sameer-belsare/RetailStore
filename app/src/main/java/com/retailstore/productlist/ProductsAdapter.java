@@ -15,6 +15,7 @@ import com.retailstore.databinding.ProductItemBinding;
 import java.util.List;
 
 /**
+ * Recycler view Adapter class for product list
  * Created by sameer.belsare on 13/2/17.
  */
 public class ProductsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -52,6 +53,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return (products != null ? products.size() : 0);
     }
 
+    /**
+     * View holder class for ProductsAdapter
+     */
     private static class ProductsListViewHolder extends RecyclerView.ViewHolder {
         private final ProductItemBinding productItemBinding;
 

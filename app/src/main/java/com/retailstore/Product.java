@@ -4,6 +4,7 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 /**
+ * Data model for Product
  * Created by sameer.belsare on 13/2/17.
  */
 public class Product extends RealmObject {

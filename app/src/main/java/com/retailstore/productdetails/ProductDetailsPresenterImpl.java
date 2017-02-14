@@ -6,9 +6,9 @@ import com.retailstore.Product;
 import io.realm.Realm;
 
 /**
+ * Implementation class of product details presenter
  * Created by sameer.belsare on 13/2/17.
  */
-
 public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
     private int id;
     private ProductDetailsView productDetailsView;

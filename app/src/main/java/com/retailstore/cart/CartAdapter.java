@@ -15,9 +15,9 @@ import com.retailstore.databinding.CartItemBinding;
 import java.util.List;
 
 /**
+ * Adapter class for Cart list
  * Created by sameer.belsare on 13/2/17.
  */
-
 public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Product> products;
     private Context mContext;
@@ -55,6 +55,9 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return (products != null ? products.size() : 0);
     }
 
+    /**
+     * View holder for CartAdapter
+     */
     private static class CartListViewHolder extends RecyclerView.ViewHolder {
         private final CartItemBinding cartItemBinding;
 
