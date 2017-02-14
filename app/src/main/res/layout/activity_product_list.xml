@@ -1,47 +1,51 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rlMain"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/list_item_margin"
-        android:layout_alignParentRight="true"/>
-
-    <FrameLayout
+    <RelativeLayout
+        android:id="@+id/rlMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/spinner"
-        tools:context=".productlist.ProductListActivity">
+        android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progress"
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone" />
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/list_item_margin" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/list"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingBottom="@dimen/list_item_padding"
-            android:paddingLeft="@dimen/list_item_margin"
-            android:paddingRight="@dimen/list_item_margin"
-            android:paddingTop="@dimen/list_item_padding"
-            android:background="@color/list_background"
-            android:scrollbarStyle="outsideOverlay"/>
-    </FrameLayout>
+            android:layout_below="@+id/spinner"
+            tools:context=".productlist.ProductListActivity">
 
-    <TextView
-        android:id="@+id/noProductsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:text="@string/no_products" />
-</RelativeLayout>
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/list_background"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/list_item_padding"
+                android:paddingLeft="@dimen/list_item_margin"
+                android:paddingRight="@dimen/list_item_margin"
+                android:paddingTop="@dimen/list_item_padding"
+                android:scrollbarStyle="outsideOverlay" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/noProductsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="@string/no_products" />
+    </RelativeLayout>
+</layout>

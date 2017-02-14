@@ -1,24 +1,22 @@
 package com.retailstore.productlist;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.retailstore.Constants;
 import com.retailstore.Product;
 import com.retailstore.R;
 import com.retailstore.cart.CartActivity;
+import com.retailstore.databinding.ActivityProductListBinding;
 import com.retailstore.productdetails.ProductDetailsActivity;
 
 import java.util.List;
@@ -27,25 +25,19 @@ import java.util.List;
  * Created by sameer.belsare on 13/2/17.
  */
 public class ProductListActivity extends AppCompatActivity implements ProductsView, View.OnClickListener, AdapterView.OnItemSelectedListener {
-    private RecyclerView listView;
-    private ProgressBar progressBar;
     private ProductPresenter productPresenter;
-    private TextView noProductsText;
     private List<Product> products;
+    private ActivityProductListBinding activityProductListBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_list);
-        listView = (RecyclerView) findViewById(R.id.list);
-        progressBar = (ProgressBar) findViewById(R.id.progress);
-        noProductsText = (TextView) findViewById(R.id.noProductsText);
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        activityProductListBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_list);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        activityProductListBinding.spinner.setAdapter(adapter);
+        activityProductListBinding.spinner.setOnItemSelectedListener(this);
         productPresenter = new ProductPresenterImpl(this);
         productPresenter.loadAllProductsInDB();
         productPresenter.getProducts(Constants.PRODUCT_CATEGORY.ALL.ordinal());
@@ -59,35 +51,35 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
 
     @Override
     public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
-        listView.setVisibility(View.INVISIBLE);
-        noProductsText.setVisibility(View.GONE);
+        activityProductListBinding.progress.setVisibility(View.VISIBLE);
+        activityProductListBinding.list.setVisibility(View.INVISIBLE);
+        activityProductListBinding.noProductsText.setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
-        listView.setVisibility(View.VISIBLE);
+        activityProductListBinding.progress.setVisibility(View.INVISIBLE);
+        activityProductListBinding.list.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showErrorMessage(String message) {
         if(products == null || products.size() <= 0) {
-            noProductsText.setVisibility(View.VISIBLE);
+            activityProductListBinding.noProductsText.setVisibility(View.VISIBLE);
         }
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.rlMain), message, Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(activityProductListBinding.rlMain, message, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 
     @Override
     public void showProducts(List<Product> products) {
-        noProductsText.setVisibility(View.GONE);
+        activityProductListBinding.noProductsText.setVisibility(View.GONE);
         this.products = products;
         ProductsAdapter productsAdapter = new ProductsAdapter(products, this, this);
-        listView.setAdapter(productsAdapter);
+        activityProductListBinding.list.setAdapter(productsAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        listView.setLayoutManager(linearLayoutManager);
-        listView.setHasFixedSize(true);
+        activityProductListBinding.list.setLayoutManager(linearLayoutManager);
+        activityProductListBinding.list.setHasFixedSize(true);
     }
 
     @Override

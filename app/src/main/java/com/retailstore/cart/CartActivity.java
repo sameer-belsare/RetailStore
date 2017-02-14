@@ -68,7 +68,7 @@ public class CartActivity extends AppCompatActivity implements CartView, View.On
 
     @Override
     public void productDeletedSuccess() {
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.rlMain), getString(R.string.deleted_from_cart), Snackbar.LENGTH_SHORT);
+        Snackbar snackbar = Snackbar.make(activityCartBinding.rlMain, getString(R.string.deleted_from_cart), Snackbar.LENGTH_SHORT);
         snackbar.show();
         cartAdapter.notifyDataSetChanged();
         cartPresenter.getTotalAmount();

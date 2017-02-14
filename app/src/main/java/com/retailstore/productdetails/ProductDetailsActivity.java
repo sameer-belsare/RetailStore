@@ -51,7 +51,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements Product
 
     @Override
     public void showMessage(String message) {
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.llDetailsMain), message, Snackbar.LENGTH_SHORT);
+        Snackbar snackbar = Snackbar.make(activityProductDetailsBinding.llDetailsMain, message, Snackbar.LENGTH_SHORT);
         snackbar.show();
     }
 
@@ -61,7 +61,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements Product
         if(!success) {
             message = getString(R.string.already_added_in_cart);
         }
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.llDetailsMain), message, Snackbar.LENGTH_SHORT);
+        Snackbar snackbar = Snackbar.make(activityProductDetailsBinding.llDetailsMain, message, Snackbar.LENGTH_SHORT);
         snackbar.show();
     }
 
