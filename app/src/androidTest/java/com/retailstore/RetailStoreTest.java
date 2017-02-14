@@ -33,31 +33,21 @@ public class RetailStoreTest {
             new ActivityTestRule<>(ProductDetailsActivity.class, true, false);
 
     @Test
-    public void viewProductDetailsAddProductToCartAndViewCart(){
-        //Added sleep to stay on list screen
+    public void viewProductDetailsAddProductToCartAndViewCart() {
         try {
             Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        for(int i=0; i<9; i+=2) {
-            Context targetContext = InstrumentationRegistry.getInstrumentation()
-                    .getTargetContext();
-            Intent intent = new Intent(targetContext, ProductDetailsActivity.class);
-            intent.putExtra("id", i+1);
-            productDetailsActivityActivityTestRule.launchActivity(intent);
-            //Added sleep to stay on details screen
-            try {
+            for (int i = 0; i < 9; i += 2) {
+                Context targetContext = InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext();
+                Intent intent = new Intent(targetContext, ProductDetailsActivity.class);
+                intent.putExtra("id", i + 1);
+                productDetailsActivityActivityTestRule.launchActivity(intent);
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                onView(withId(R.id.btnCart)).perform(click());
+                productDetailsActivityActivityTestRule.getActivity().finish();
+                Thread.sleep(500);
             }
-            onView(withId(R.id.btnCart)).perform(click());
-            productDetailsActivityActivityTestRule.getActivity().finish();
-        }
-        onView(withId(R.id.action_settings)).perform(click());
-        //Added sleep to stay on cart
-        try {
+            onView(withId(R.id.action_settings)).perform(click());
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
