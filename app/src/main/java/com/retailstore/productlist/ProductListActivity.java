@@ -46,8 +46,8 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
 
     @Override
     protected void onDestroy() {
-        productPresenter.onDestroy();
         super.onDestroy();
+        productPresenter.onDestroy();
     }
 
     @Override
