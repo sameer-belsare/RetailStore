@@ -85,6 +85,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
     @Override
     public void showProductDetails(int id) {
         Intent intent = new Intent(this, ProductDetailsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("id", id);
         startActivity(intent);
     }
@@ -99,6 +100,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             Intent intent = new Intent(this, CartActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
