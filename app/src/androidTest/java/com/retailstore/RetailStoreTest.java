@@ -47,7 +47,7 @@ public class RetailStoreTest {
                 productDetailsActivityActivityTestRule.getActivity().finish();
                 Thread.sleep(500);
             }
-            onView(withId(R.id.action_settings)).perform(click());
+            onView(withId(R.id.countImage)).perform(click());
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
