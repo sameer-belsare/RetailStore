@@ -4,6 +4,7 @@ import com.retailstore.ApplicationController;
 import com.retailstore.Product;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Implementation class of product details presenter
@@ -43,5 +44,15 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
             realm.commitTransaction();
             productDetailsView.addedToCart(true);
         }
+    }
+
+    @Override
+    public void refreshCartCount() {
+        RealmResults<Product> addedToCart = realm.where(Product.class).equalTo("addedToCart", true).findAll();
+        int count = 0;
+        if(addedToCart != null){
+            count = addedToCart.size();
+        }
+        productDetailsView.setCartCount(count);
     }
 }

@@ -74,4 +74,14 @@ public class ProductPresenterImpl implements ProductPresenter {
         productsView = null;
         ApplicationController.getInstance().closeRealmInstance();
     }
+
+    @Override
+    public void refreshCartCount() {
+        RealmResults<Product> addedToCart = realm.where(Product.class).equalTo("addedToCart", true).findAll();
+        int count = 0;
+        if(addedToCart != null){
+            count = addedToCart.size();
+        }
+        productsView.setCartCount(count);
+    }
 }

@@ -22,4 +22,9 @@ public interface ProductDetailsView {
      * @param success
      */
     void addedToCart(boolean success);
+    /**
+     * Method to set count of producst in cart
+     * @param count
+     */
+    void setCartCount(int count);
 }

@@ -23,4 +23,8 @@ public interface ProductPresenter {
      * Method to destroy the view
      */
     void onDestroy();
+    /**
+     * Method to refresh count of products in cart
+     */
+    void refreshCartCount();
 }

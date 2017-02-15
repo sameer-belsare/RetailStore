@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.retailstore.Product;
@@ -23,6 +25,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements Product
     private ProductDetailsPresenterImpl productDetailsPresenter;
     private Product product;
     private ActivityProductDetailsBinding activityProductDetailsBinding;
+    private int cartCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements Product
         activityProductDetailsBinding.btnCart.setOnClickListener(this);
         productDetailsPresenter = new ProductDetailsPresenterImpl(this, id);
         productDetailsPresenter.getProductDetails();
+        productDetailsPresenter.refreshCartCount();
     }
 
     @Override
@@ -63,12 +67,19 @@ public class ProductDetailsActivity extends AppCompatActivity implements Product
         }
         Snackbar snackbar = Snackbar.make(activityProductDetailsBinding.llDetailsMain, message, Snackbar.LENGTH_SHORT);
         snackbar.show();
+        productDetailsPresenter.refreshCartCount();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+
+        View count = menu.findItem(R.id.action_settings).getActionView();
+        TextView tvCount = (TextView) count.findViewById(R.id.tvCount);
+        tvCount.setText(String.valueOf(cartCount));
+        ImageView imageView = (ImageView) count.findViewById(R.id.countImage);
+        imageView.setOnClickListener(this);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -82,10 +93,21 @@ public class ProductDetailsActivity extends AppCompatActivity implements Product
     }
 
     @Override
+    public void setCartCount(int count){
+        cartCount = count;
+        invalidateOptionsMenu();
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnCart:
                 productDetailsPresenter.addToCart(product.getId());
+                break;
+            case R.id.countImage:
+                Intent intent = new Intent(this, CartActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
         }
     }

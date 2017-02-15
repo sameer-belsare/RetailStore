@@ -32,4 +32,9 @@ public interface ProductsView {
      * @param id
      */
     void showProductDetails(int id);
+    /**
+     * Method to set count of producst in cart
+     * @param count
+     */
+    void setCartCount(int count);
 }

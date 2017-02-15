@@ -18,4 +18,8 @@ public interface ProductDetailsPresenter {
      * @param id
      */
     void addToCart(int id);
+    /**
+     * Method to refresh count of products in cart
+     */
+    void refreshCartCount();
 }

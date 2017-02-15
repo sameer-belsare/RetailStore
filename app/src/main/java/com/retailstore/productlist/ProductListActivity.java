@@ -7,10 +7,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.retailstore.Constants;
 import com.retailstore.Product;
@@ -29,6 +30,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
     private ProductPresenter productPresenter;
     private List<Product> products;
     private ActivityProductListBinding activityProductListBinding;
+    private int cartCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,12 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
         productPresenter = new ProductPresenterImpl(this);
         productPresenter.loadAllProductsInDB();
         productPresenter.getProducts(Constants.PRODUCT_CATEGORY.ALL.ordinal());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        productPresenter.refreshCartCount();
     }
 
     @Override
@@ -94,17 +102,19 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+
+        View count = menu.findItem(R.id.action_settings).getActionView();
+        TextView tvCount = (TextView) count.findViewById(R.id.tvCount);
+        tvCount.setText(String.valueOf(cartCount));
+        ImageView imageView = (ImageView) count.findViewById(R.id.countImage);
+        imageView.setOnClickListener(this);
+        return super.onCreateOptionsMenu(menu);
     }
 
-     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
-            Intent intent = new Intent(this, CartActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void setCartCount(int count){
+        cartCount = count;
+        invalidateOptionsMenu();
     }
 
     @Override
@@ -112,6 +122,11 @@ public class ProductListActivity extends AppCompatActivity implements ProductsVi
         switch (view.getId()){
             case R.id.ll_main:
                 productPresenter.onItemClicked((int)view.getTag());
+                break;
+            case R.id.countImage:
+                Intent intent = new Intent(this, CartActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
         }
     }
